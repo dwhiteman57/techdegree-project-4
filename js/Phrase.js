@@ -15,23 +15,17 @@ class Phrase {
   */
 
   addPhraseToDisplay() {
-    const text = this.phrase;
-    const dispArea = document.getElementById("phrase");
-    const dispWord = document.getElementsByTagName("ul")[0];
+    const message = this.phrase;
+    const dispWord = document.querySelector('ul');
+    let text = '';
 
-    for (let char of text) {
-      const newLi = document.createElement("li");
-      newLi.classList.add("hide");
-      if (char === " ") {
-        newLi.classList.add("space");
+    for (let i = 0; i < message.length; i++) {
+      if (message[i] == ' ') {
+        text += "<li class='hide space'> </li>";
       } else {
-        newLi.classList.add("letter");
+        text += `<li class='hide letter ${message[i]}'>${message[i]}</li>`
       }
-
-      newLi.textContent = char;
-      dispWord.appendChild(newLi);
     }
-    dispArea.appendChild(dispWord);
-    return dispArea;
+    dispWord.innerHTML = text;
   }
 }
