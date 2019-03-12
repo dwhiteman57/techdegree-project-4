@@ -27,4 +27,11 @@
      let selPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];
      return selPhrase;
    };
+
+   startGame() {
+     document.getElementById('overlay').style.display = "none";
+     this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
+     this.activePhrase.addPhraseToDisplay();
+   }
+
  }
