@@ -34,4 +34,6 @@
      this.activePhrase.addPhraseToDisplay();
    }
 
+   handleInteraction(){}
+
  }

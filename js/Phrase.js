@@ -28,4 +28,26 @@ class Phrase {
     }
     dispWord.innerHTML = text;
   }
+
+  checkLetter(letter) {
+    for (let i = 0; i < this.phrase.length; i++) {
+    if (this.phrase[i] === letter) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  showMatchedLetter(letter) {
+    let selected = document.querySelectorAll('ul li');
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i].textContent === letter) {
+        selected[i].classList.remove('hide');
+        selected[i].classList.add('show');
+      }
+    }
+  };
+
+
+
 }
