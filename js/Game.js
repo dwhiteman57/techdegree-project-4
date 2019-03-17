@@ -13,11 +13,12 @@
    /* Create phrase method. Creates the phrases for the game and returns an array of phrases that can be used */
    createPhrases() {
      const phrase = [
-       {phrase: 'Life is like a box of choclates'},
-       {phrase: 'May the force be with you'},
-       {phrase: 'I am the eggman'},
-       {phrase: 'I am the walrus'},
-       {phrase: 'Be awesome today'}
+       {phrase: 'and'},
+       {phrase: 'bn'},
+       {phrase: 'cn'},
+       {phrase: 'dn'},
+       {phrase: 'en'},
+       {phrase: 'fn'}
      ];
      return phrase;
    }
@@ -34,6 +35,51 @@
      this.activePhrase.addPhraseToDisplay();
    }
 
+   checkForWin() {
+     let win = false;
+     let selected = document.querySelectorAll('.hide').length;
+
+       if (selected === 0) {
+         win = true;
+       } else {
+         win = false;
+       }
+
+     return win;
+
+   };
+
+
    handleInteraction(){}
 
+
  }
+
+
+ // let win = false;
+ // let selected = document.querySelectorAll('.hide').length;
+ //
+ //   if (!selected) {
+ //     win = true;
+ //   } else {
+ //     win = false;
+ //   }
+ //   return win;
+
+
+
+
+
+
+
+
+ // let win = false;
+ // let selected = document.querySelectorAll('ul li');
+ // for (let i = 0; i < selected.length; i++) {
+ //   if (selected[i].classList.contains('hide')) {
+ //     win = false;
+ //   } else if (selected[i].classList.contains('show')) {
+ //     win = true;
+ //   }
+ // }
+ // return win;
