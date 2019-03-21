@@ -23,21 +23,15 @@ startButton.addEventListener("click", startGame, false);
 
 
 // Makes sure only button elements from <div> with id="qwerty" & a class of key fire. Prevents event listener from firing unintentionally
-// Get the parent DIV, add click listener...
+
 document.getElementById("qwerty").addEventListener("click",function(e) {
-// e.target was the clicked element
-if(e.target && e.target.nodeName == "BUTTON") {
-  // Get the CSS classes
-  var classes = e.target.className.split(" ");
-  // Search for the CSS class!
-  if(classes) {
-      // For every CSS class the element has...
-      for(var i = 0; i < classes.length; i++) {
-          // If it has the CSS class we want...
-          if(classes[i] == "key") {
-              // Bingo!
+if (e.target && e.target.nodeName == "BUTTON") {
+  let classes = e.target.className.split(" ");
+
+  if (classes) {
+      for (let i = 0; i < classes.length; i++) {
+          if (classes[i] == "key") {
               console.log("letter element clicked!");
-              // Now do something here....
               game.handleInteraction(e.target);
           }
       }

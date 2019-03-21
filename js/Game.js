@@ -13,12 +13,12 @@
    /* Create phrase method. Creates the phrases for the game and returns an array of phrases that can be used */
    createPhrases() {
      const phrase = [
-       {phrase: 'and'},
-       {phrase: 'bn'},
-       {phrase: 'cn'},
-       {phrase: 'dn'},
-       {phrase: 'en'},
-       {phrase: 'fn'}
+       {phrase: 'and a bag'},
+       {phrase: 'bn r'},
+       {phrase: 'cn gg'},
+       {phrase: 'dn t'},
+       {phrase: 'en a'},
+       {phrase: 'fn a b'}
      ];
      return phrase;
    }
@@ -79,8 +79,29 @@
 
 
    handleInteraction(button) {
+     button.setAttribute("disabled", "disabled");
+
+     if (this.activePhrase.checkLetter(button.innerHTML) === false) {
+       button.classList.add('wrong');
+       this.removeLife();
+     } else if (this.activePhrase.checkLetter(button.innerHTML) === true) {
+       this.activePhrase.showMatchedLetter(button.innerHTML);
+       button.classList.add('chosen');
+       if (this.checkForWin() === true) {
+         this.gameOver(true);
+       };
+     }
+
      console.log(button);
    }
+
+
+
+
+
+
+
+
 
 
  }

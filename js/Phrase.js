@@ -20,8 +20,8 @@ class Phrase {
     let text = '';
 
     for (let i = 0; i < message.length; i++) {
-      if (message[i] == ' ') {
-        text += "<li class='hide space'> </li>";
+      if (message[i] === ' ') {
+        text += "<li class='space'> </li>";
       } else {
         text += `<li class='hide letter ${message[i]}'>${message[i]}</li>`
       }
