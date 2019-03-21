@@ -46,40 +46,41 @@
        }
 
      return win;
-
    };
 
 
-   handleInteraction(){}
+   removeLife() {
+     this.missed += 1;
+     let heart = document.querySelector("img[src='images/liveHeart.png']");
+     heart.src="images/lostHeart.png";
+
+     if (this.missed === 5) {
+       console.log('game over');
+       this.gameOver();
+     }
+  }
+
+  gameOver(gameWon) {
+    let overlay = document.querySelector('#overlay');
+    let msg = document.querySelector('#game-over-message');
+
+    if (gameWon) {
+      overlay.style.display = '';
+      overlay.className = 'win';
+      msg.textContent = 'Great job, you won!';
+
+    } else {
+      overlay.style.display = '';
+      overlay.className = 'lose';
+      msg.textContent = 'Sorry, better luck next time!';
+    }
+
+  }
+
+
+   handleInteraction(button) {
+     console.log(button);
+   }
 
 
  }
-
-
- // let win = false;
- // let selected = document.querySelectorAll('.hide').length;
- //
- //   if (!selected) {
- //     win = true;
- //   } else {
- //     win = false;
- //   }
- //   return win;
-
-
-
-
-
-
-
-
- // let win = false;
- // let selected = document.querySelectorAll('ul li');
- // for (let i = 0; i < selected.length; i++) {
- //   if (selected[i].classList.contains('hide')) {
- //     win = false;
- //   } else if (selected[i].classList.contains('show')) {
- //     win = true;
- //   }
- // }
- // return win;
