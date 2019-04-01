@@ -10,32 +10,49 @@
      this.activePhrase = null;
    }
 
-   /* Create phrase method. Creates the phrases for the game and returns an array of phrases that can be used */
-   createPhrases() {
+
+    /**
+    * Creates phrases for use in game
+    * @return {array} An array of phrases that could be used in the game
+    */
+    createPhrases() {
      const phrase = [
-       {phrase: 'and a bag'},
-       {phrase: 'bn r'},
-       {phrase: 'cn gg'},
-       {phrase: 'dn t'},
-       {phrase: 'en a'},
-       {phrase: 'fn a b'}
+       {phrase: 'hey meow'},
+       {phrase: 'i am the eggman'},
+       {phrase: 'star wars'},
+       {phrase: 'get me those tps reports'},
+       {phrase: 'tact is the ability to describe others as they see themselves'},
+       {phrase: 'from now on i will connect the dots my own way'}
      ];
      return phrase;
-   }
+    }
 
-   /* Create random phrase method. Selects random phrase from the phrases property. Return object chosen to be used */
-   getRandomPhrase() {
+    /**
+    * Selects random phrase from phrases property
+    * @return {object} Phras object chosen to be used
+    */
+    getRandomPhrase() {
      let selPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];
      return selPhrase;
-   };
+    };
 
-   startGame() {
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to the user
+    */
+    startGame() {
+     this.resetGame();
      document.getElementById('overlay').style.display = "none";
      this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
      this.activePhrase.addPhraseToDisplay();
-   }
+    }
 
-   checkForWin() {
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    */
+    checkForWin() {
      let win = false;
      let selected = document.querySelectorAll('.hide').length;
 
@@ -46,21 +63,31 @@
        }
 
      return win;
-   };
+    };
 
 
-   removeLife() {
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
      this.missed += 1;
      let heart = document.querySelector("img[src='images/liveHeart.png']");
-     heart.src="images/lostHeart.png";
+     heart.src = "images/lostHeart.png";
 
      if (this.missed === 5) {
        console.log('game over');
        this.gameOver();
      }
-  }
+    }
 
-  gameOver(gameWon) {
+
+    /**
+    * Displays game over message
+    * @param{boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
     let overlay = document.querySelector('#overlay');
     let msg = document.querySelector('#game-over-message');
 
@@ -75,10 +102,14 @@
       msg.textContent = 'Sorry, better luck next time!';
     }
 
-  }
+    }
 
 
-   handleInteraction(button) {
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param {HTMLButtonElement} button - The clicked button element
+    */
+    handleInteraction(button) {
      button.setAttribute("disabled", "disabled");
 
      if (this.activePhrase.checkLetter(button.innerHTML) === false) {
@@ -91,17 +122,36 @@
          this.gameOver(true);
        };
      }
-
+     // Logged output of button in console for testing/troubleshooting
      console.log(button);
-   }
+    }
 
 
+    /**
+    * Resets game when start game button is clicked
+    * Removes all li elements from the phrase ul element
+    * Enables onscreen keyboard buttons and updates each to the 'key' CSS class
+    * Rests all heart images
+    * Resets the missed count
+    */
+    resetGame() {
+    let li = document.querySelectorAll("ul li");
+    for (let i = 0; i < li.length; i++) {
+      li[i].remove();
+    }
 
+    let letter = document.querySelectorAll("button");
+    for (let i = 0; i < letter.length; i++) {
+       letter[i].removeAttribute('disabled');
+       letter[i].className = 'key';
+    }
 
+    let rHeart = document.querySelectorAll(".tries img");
+    for (let i = 0; i < rHeart.length; i++) {
+      rHeart[i].src = "images/liveHeart.png";
+      this.missed = 0;
+    }
 
+  }
 
-
-
-
-
- }
+}

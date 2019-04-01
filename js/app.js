@@ -3,27 +3,28 @@
  * app.js */
 
 
-//Test code here
 
-
-
-//App code
+ /**
+ * Calls start game
+ */
 let game;
 let startButton = document.getElementById('btn__reset');
 
 let startGame = () => {
   game = new Game();
   game.startGame();
+
+  // Logged phrase to console for troubleshooting purposes
   console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 }
 
 startButton.addEventListener("click", startGame, false);
 
 
-
-
-// Makes sure only button elements from <div> with id="qwerty" & a class of key fire. Prevents event listener from firing unintentionally
-
+/**
+* Ensures only butten elements from the <div> with id="qwerty" and a class of '.key' fire
+* Prevents event listener from firing unintentionally on any other element
+*/
 document.getElementById("qwerty").addEventListener("click",function(e) {
 if (e.target && e.target.nodeName == "BUTTON") {
   let classes = e.target.className.split(" ");
